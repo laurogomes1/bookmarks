@@ -8,11 +8,12 @@ function getMenuItems() {
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                       </svg>'
         ],
-        [
-            'title' => 'Usuários',
-            'url' => '/bookmarks/app/modules/usuarios/index.php',
-            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25v-1.5A2.25 2.25 0 016.75 16.5h10.5a2.25 2.25 0 012.25 2.25v1.5" /></svg>'
-        ],
+        // Futuramente, podemos adicionar um menu para gerenciar categorias aqui
+        // [
+        //     'title' => 'Categorias',
+        //     'url' => '/bookmarks/app/modules/categories/',
+        //     'icon' => '...'
+        // ],
         [
             'title' => 'Configurações',
             'url' => '/bookmarks/app/modules/configuracoes/index.php',
@@ -22,7 +23,8 @@ function getMenuItems() {
 }
 
 function renderMenu($currentPath, $isCollapsed = false) {
-    // Removemos a altura fixa para evitar problemas de posicionamento
+    // A lógica desta função permanece a mesma, apenas o conteúdo de getMenuItems() foi alterado.
+    // ... (código existente da função renderMenu)
     $output = '<div class="flex flex-col">'; 
     
     // Menu principal
@@ -30,7 +32,7 @@ function renderMenu($currentPath, $isCollapsed = false) {
     
     $menuItems = getMenuItems();
     foreach ($menuItems as $item) {
-        $isActive = $_SERVER['PHP_SELF'] === $item['url'];
+        $isActive = strpos($_SERVER['REQUEST_URI'], $item['url']) === 0;
         $activeClass = $isActive ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900';
         
         $output .= sprintf(
@@ -44,14 +46,14 @@ function renderMenu($currentPath, $isCollapsed = false) {
             $isActive ? 'text-gray-900' : 'text-gray-400 group-hover:text-gray-500',
             $item['icon'],
             $isCollapsed ? 'opacity-0 hidden' : 'opacity-100',
-            $isActive ? 'text-gray-900' : 'text-gray-600', // Adiciona a classe de cor diretamente ao texto
+            $isActive ? 'text-gray-900' : 'text-gray-600',
             htmlspecialchars($item['title'])
         );
     }
     
     $output .= '</nav>';
     
-    // Botão de sair logo após os itens do menu, não no final da página
+    // Botão de sair
     $output .= sprintf(
         '<div class="border-t pt-4 mt-6 mb-4">
             <a href="/bookmarks/logout.php" 

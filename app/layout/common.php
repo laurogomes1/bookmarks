@@ -9,8 +9,10 @@ require_once __DIR__ . '/../config.php';
 
 // Função para verificar se o usuário está logado
 function checkAuth() {
-    if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-        header('Location: ../../../index.php');
+    // MODIFICAÇÃO: Ajustado para usar a variável de sessão correta que definimos ('user')
+    if (!isset($_SESSION['user'])) {
+        // MODIFICAÇÃO: Ajustado o redirecionamento para a raiz do projeto.
+        header('Location: /bookmarks/index.php');
         exit;
     }
 }
@@ -30,6 +32,8 @@ function renderHeader($title = 'Sistema de Gerenciamento', $additionalStyles = '
     <title>' . htmlspecialchars($title) . ' - Sistema de Gerenciamento</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="/bookmarks/assets/css/styles.css" rel="stylesheet">
     <style>
         /* Garante que o body e html ocupem toda a altura, prevenindo problemas com 100vh em alguns browsers mobile */
@@ -251,7 +255,9 @@ function renderFooter() {
             resizeTimer = setTimeout(initializeLayout, 100); // Debounce para evitar chamadas excessivas
         });
     </script>
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    </body>
 </html>';
 
     return $html;
@@ -262,7 +268,9 @@ function renderPageStructure($user, $content) {
     require_once __DIR__ . '/../menu.php'; // Contém a função renderMenu
     require_once __DIR__ . '/../topbar.php'; // Contém a função renderTopBar
     
-    $logo_url = get_logo_url();
+    // MODIFICAÇÃO: Simplificado, já que a função get_logo_url não foi fornecida, usando um placeholder.
+    $logo_url = '/bookmarks/images/logo.png'; // Caminho para seu logo
+
     $html = '<div class="min-h-screen flex">
         <div id="sidebarContainer" class="transition-all duration-300 ease-in-out fixed top-0 left-0 h-screen z-20">
             <aside id="sidebar" class="bg-white shadow-sm border-r h-screen flex flex-col collapsed">
