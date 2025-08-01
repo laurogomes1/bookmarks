@@ -1,0 +1,22 @@
+body {
+	font-family: "Inter", sans-serif;
+}
+
+/* Custom focus ring for better visibility */
+.focus-ring-custom:focus {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+	--tw-ring-color: theme("colors.sky.500"); /* Accent color */
+	box-shadow: 0 0 0 2px theme("colors.white"), 0 0 0 4px var(--tw-ring-color);
+}
+
+/* Hide number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield; /* Firefox */
+}

@@ -1,0 +1,458 @@
+[2025-05-14 14:04:51] [info] Iniciando verificação de credenciais - Origem: http://localhost:8888/painelpro/index.php
+[2025-05-14 14:04:51] [debug] Detalhes da requisição: {
+    "method": "POST",
+    "ip": "::1",
+    "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15"
+}
+[2025-05-14 14:04:51] [info] Iniciando processo de validação para email: laurogomes1@gmail.com
+[2025-05-14 14:04:51] [debug] Headers da requisição: {
+    "Connection": "keep-alive",
+    "Cookie": "PHPSESSID=rool4daftc88bs69i4fd3u6170; sb-login=SDVYa3ZsenlzK05DUENWeUorWnJxblJCTU91aXdRN2hSRHl2b0hYaHlUMG9BLzFaNk5GUGNOR3VKRHVKM01nbzh4R1M2RWQ4YjRPczB0cUFaMnJDV1BVNzkzSWpVMFJvWUpjRUdJNUJ3NzlmVDh1K3RjUlFKQWNoUng1dlVqNmNCZEhCQzd1VWd0TGRtYm9ETWovcUZOQmtzMmhnV1c0b3VGOGVSSVhLdnNRN0hLVVVpbkUrbkJMbkVOUW9ydit5b1hlWGNyZXRRZ2tEQ2ZGUW9jaHhGVUFTU2pDSWQ2SUZ0anNKbldtbkRnb0s5SWZpMW41Z01SYlh6dFNVSTU3dHU0RVlGOTJsMUtNZEN4RGNDQng1Mmt2TS9kWjJLMUgwZDdTMkFyOE82SWVoeTZ2Y1cweGtNOWZzcHMzWkNhd3FUbkJDVy9kNzQxamRTK1E5SllCV3FwM2NnWk5zN092M00xb0FKSG05SFBrcCtFbityeFZSeVJ1RVNrWmN2ekNLRG1qN1k2dkwzMTJpQUkzMEtDamhiUT09; _ga=GA1.1.993453907.1741373111; _ga_1R0V29DGTE=GS1.1.1745952382.23.0.1745952382.60.0.0; _pk_ref.1.1fff=%5B%22%22%2C%22%22%2C1745952383%2C%22http%3A%2F%2Flocalhost%3A8888%2Fbug%2Fadmin%2Fusers%3Fquery%3DJunior_lemos83%40hotmail.com%26field%3Demail%22%5D; _gcl_au=1.1.1924135496.1741373111; _pk_id.1.1fff=a016ddacdca96eab.1744064434.; debug-bar-state=minimized; debug-bar-tab=ci-history; debug-hot-reload=show; debug-bar-theme=light; _ga_ZS3MDF14ZF=GS1.1.1741625584.3.1.1741625594.0.0.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Priority": "u=3, i",
+    "Accept-Language": "pt-BR,pt;q=0.9",
+    "Content-Length": "260",
+    "Sec-Fetch-Dest": "empty",
+    "Referer": "http:\/\/localhost:8888\/painelpro\/index.php",
+    "User-Agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Origin": "http:\/\/localhost:8888",
+    "Content-Type": "multipart\/form-data; boundary=----WebKitFormBoundaryJaYxxfGuLjWOykg1",
+    "Accept": "*\/*",
+    "Host": "localhost:8888"
+}
+[2025-05-14 14:04:51] [debug] Nova instância da classe User criada. Memória em uso: 2097152 bytes
+[2025-05-14 14:04:51] [debug] Iniciando verificação de credenciais no banco de dados
+[2025-05-14 14:04:51] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 14:04:51] [debug] Timestamp da verificação: 2025-05-14 14:04:51.000000
+[2025-05-14 14:04:51] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+    "query_time_ms": 24.3,
+    "last_login": "2025-05-14 13:34:43",
+    "account_created": "2025-03-26 18:25:30"
+}
+[2025-05-14 14:04:51] [info] Verificação de senha: válida (tempo: 185.12ms)
+[2025-05-14 14:04:51] [success] Login bem-sucedido para laurogomes1@gmail.com - Usuário: Administrador (ID: 1, Função: admin)
+[2025-05-14 14:04:51] [debug] Último login atualizado para usuário ID: 1
+[2025-05-14 14:04:51] [success] Credenciais verificadas com sucesso para: laurogomes1@gmail.com
+[2025-05-14 14:04:51] [debug] Dados do usuário autenticado: {
+    "id": 1,
+    "email": "laurogomes1@gmail.com",
+    "name": "Administrador",
+    "role": "admin",
+    "last_login": "2025-05-14 13:34:43"
+}
+[2025-05-14 14:04:55] [info] Iniciando processo de autenticação
+[2025-05-14 14:04:55] [debug] Método da requisição: POST
+[2025-05-14 14:04:55] [debug] Dados recebidos para autenticação - Email: laurogomes1@gmail.com, PIN fornecido: sim
+[2025-05-14 14:04:55] [debug] Nova instância da classe User criada. Memória em uso: 2097152 bytes
+[2025-05-14 14:04:55] [info] Iniciando autenticação completa com PIN para laurogomes1@gmail.com
+[2025-05-14 14:04:55] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-05-14 14:04:55] [debug] Timestamp da autenticação: 2025-05-14 14:04:55.000000
+[2025-05-14 14:04:55] [debug] Tempo de consulta do usuário: 0.44ms
+[2025-05-14 14:04:55] [debug] Verificação de senha na autenticação completa: válida (tempo: 192.1ms)
+[2025-05-14 14:04:55] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-05-14 14:04:55] [debug] PIN fornecido: 282740, PIN esperado: 282740
+[2025-05-14 14:04:55] [success] Autenticação completa bem-sucedida para laurogomes1@gmail.com - Nome: Administrador, ID: 1, Função: admin
+[2025-05-14 14:04:55] [debug] Último login atualizado para usuário ID: 1
+[2025-05-14 14:04:55] [success] Autenticação completa bem-sucedida para laurogomes1@gmail.com
+[2025-05-14 14:04:55] [debug] Detalhes do usuário autenticado: {
+    "id": 1,
+    "name": "Administrador",
+    "email": "laurogomes1@gmail.com",
+    "role": "admin"
+}
+[2025-05-14 14:04:55] [debug] Redirecionando para dashboard após autenticação bem-sucedida
+[2025-05-14 14:06:46] [info] Iniciando verificação de credenciais - Origem: http://localhost:8888/painelpro/index.php
+[2025-05-14 14:06:46] [debug] Detalhes da requisição: {
+    "method": "POST",
+    "ip": "::1",
+    "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15"
+}
+[2025-05-14 14:06:46] [info] Iniciando processo de validação para email: laurogomes1@gmail.com
+[2025-05-14 14:06:46] [debug] Headers da requisição: {
+    "Connection": "keep-alive",
+    "Cookie": "PHPSESSID=rool4daftc88bs69i4fd3u6170; sb-login=SDVYa3ZsenlzK05DUENWeUorWnJxblJCTU91aXdRN2hSRHl2b0hYaHlUMG9BLzFaNk5GUGNOR3VKRHVKM01nbzh4R1M2RWQ4YjRPczB0cUFaMnJDV1BVNzkzSWpVMFJvWUpjRUdJNUJ3NzlmVDh1K3RjUlFKQWNoUng1dlVqNmNCZEhCQzd1VWd0TGRtYm9ETWovcUZOQmtzMmhnV1c0b3VGOGVSSVhLdnNRN0hLVVVpbkUrbkJMbkVOUW9ydit5b1hlWGNyZXRRZ2tEQ2ZGUW9jaHhGVUFTU2pDSWQ2SUZ0anNKbldtbkRnb0s5SWZpMW41Z01SYlh6dFNVSTU3dHU0RVlGOTJsMUtNZEN4RGNDQng1Mmt2TS9kWjJLMUgwZDdTMkFyOE82SWVoeTZ2Y1cweGtNOWZzcHMzWkNhd3FUbkJDVy9kNzQxamRTK1E5SllCV3FwM2NnWk5zN092M00xb0FKSG05SFBrcCtFbityeFZSeVJ1RVNrWmN2ekNLRG1qN1k2dkwzMTJpQUkzMEtDamhiUT09; _ga=GA1.1.993453907.1741373111; _ga_1R0V29DGTE=GS1.1.1745952382.23.0.1745952382.60.0.0; _pk_ref.1.1fff=%5B%22%22%2C%22%22%2C1745952383%2C%22http%3A%2F%2Flocalhost%3A8888%2Fbug%2Fadmin%2Fusers%3Fquery%3DJunior_lemos83%40hotmail.com%26field%3Demail%22%5D; _gcl_au=1.1.1924135496.1741373111; _pk_id.1.1fff=a016ddacdca96eab.1744064434.; debug-bar-state=minimized; debug-bar-tab=ci-history; debug-hot-reload=show; debug-bar-theme=light; _ga_ZS3MDF14ZF=GS1.1.1741625584.3.1.1741625594.0.0.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Priority": "u=3, i",
+    "Accept-Language": "pt-BR,pt;q=0.9",
+    "Content-Length": "260",
+    "Sec-Fetch-Dest": "empty",
+    "Referer": "http:\/\/localhost:8888\/painelpro\/index.php",
+    "User-Agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Origin": "http:\/\/localhost:8888",
+    "Content-Type": "multipart\/form-data; boundary=----WebKitFormBoundaryyInNYYqUhHEZwP9n",
+    "Accept": "*\/*",
+    "Host": "localhost:8888"
+}
+[2025-05-14 14:06:46] [debug] Nova instância da classe User criada. Memória em uso: 2097152 bytes
+[2025-05-14 14:06:46] [debug] Iniciando verificação de credenciais no banco de dados
+[2025-05-14 14:06:46] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 14:06:46] [debug] Timestamp da verificação: 2025-05-14 14:06:46.000000
+[2025-05-14 14:06:46] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+    "query_time_ms": 1.21,
+    "last_login": "2025-05-14 14:04:55",
+    "account_created": "2025-03-26 18:25:30"
+}
+[2025-05-14 14:06:47] [info] Verificação de senha: válida (tempo: 214.23ms)
+[2025-05-14 14:06:47] [success] Login bem-sucedido para laurogomes1@gmail.com - Usuário: Administrador (ID: 1, Função: admin)
+[2025-05-14 14:06:47] [debug] Último login atualizado para usuário ID: 1
+[2025-05-14 14:06:47] [success] Credenciais verificadas com sucesso para: laurogomes1@gmail.com
+[2025-05-14 14:06:47] [debug] Dados do usuário autenticado: {
+    "id": 1,
+    "email": "laurogomes1@gmail.com",
+    "name": "Administrador",
+    "role": "admin",
+    "last_login": "2025-05-14 14:04:55"
+}
+[2025-05-14 14:06:50] [info] Iniciando processo de autenticação
+[2025-05-14 14:06:50] [debug] Método da requisição: POST
+[2025-05-14 14:06:50] [debug] Dados recebidos para autenticação - Email: laurogomes1@gmail.com, PIN fornecido: sim
+[2025-05-14 14:06:50] [debug] Nova instância da classe User criada. Memória em uso: 2097152 bytes
+[2025-05-14 14:06:50] [info] Iniciando autenticação completa com PIN para laurogomes1@gmail.com
+[2025-05-14 14:06:50] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-05-14 14:06:50] [debug] Timestamp da autenticação: 2025-05-14 14:06:50.000000
+[2025-05-14 14:06:50] [debug] Tempo de consulta do usuário: 0.58ms
+[2025-05-14 14:06:50] [debug] Verificação de senha na autenticação completa: válida (tempo: 209.73ms)
+[2025-05-14 14:06:50] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-05-14 14:06:50] [debug] PIN fornecido: 282740, PIN esperado: 282740
+[2025-05-14 14:06:50] [success] Autenticação completa bem-sucedida para laurogomes1@gmail.com - Nome: Administrador, ID: 1, Função: admin
+[2025-05-14 14:06:50] [debug] Último login atualizado para usuário ID: 1
+[2025-05-14 14:06:50] [success] Autenticação completa bem-sucedida para laurogomes1@gmail.com
+[2025-05-14 14:06:50] [debug] Sessão configurada com sucesso. ID: 8q787bvmne4r0siahtahv6q4ss
+[2025-05-14 14:06:50] [debug] Redirecionando para dashboard após autenticação bem-sucedida
+[2025-05-14 14:06:50] [info] Tentativa de acesso à dashboard
+[2025-05-14 14:06:50] [debug] Dados da sessão: {
+    "session_id": "8q787bvmne4r0siahtahv6q4ss",
+    "has_logged_in": true,
+    "has_user": true,
+    "auth_time": 1747242410
+}
+[2025-05-14 14:06:50] [success] Acesso autorizado à dashboard para usuário: laurogomes1@gmail.com
+[2025-05-14 14:12:33] [info] Iniciando verificação de credenciais - Origem: http://localhost:8888/painelpro/index.php
+[2025-05-14 14:12:33] [debug] Detalhes da requisição: {
+    "method": "POST",
+    "ip": "::1",
+    "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15"
+}
+[2025-05-14 14:12:33] [info] Iniciando processo de validação para email: laurogomes1@gmail.com
+[2025-05-14 14:12:33] [debug] Headers da requisição: {
+    "Connection": "keep-alive",
+    "Cookie": "PHPSESSID=8q787bvmne4r0siahtahv6q4ss; sb-login=SDVYa3ZsenlzK05DUENWeUorWnJxblJCTU91aXdRN2hSRHl2b0hYaHlUMG9BLzFaNk5GUGNOR3VKRHVKM01nbzh4R1M2RWQ4YjRPczB0cUFaMnJDV1BVNzkzSWpVMFJvWUpjRUdJNUJ3NzlmVDh1K3RjUlFKQWNoUng1dlVqNmNCZEhCQzd1VWd0TGRtYm9ETWovcUZOQmtzMmhnV1c0b3VGOGVSSVhLdnNRN0hLVVVpbkUrbkJMbkVOUW9ydit5b1hlWGNyZXRRZ2tEQ2ZGUW9jaHhGVUFTU2pDSWQ2SUZ0anNKbldtbkRnb0s5SWZpMW41Z01SYlh6dFNVSTU3dHU0RVlGOTJsMUtNZEN4RGNDQng1Mmt2TS9kWjJLMUgwZDdTMkFyOE82SWVoeTZ2Y1cweGtNOWZzcHMzWkNhd3FUbkJDVy9kNzQxamRTK1E5SllCV3FwM2NnWk5zN092M00xb0FKSG05SFBrcCtFbityeFZSeVJ1RVNrWmN2ekNLRG1qN1k2dkwzMTJpQUkzMEtDamhiUT09; _ga=GA1.1.993453907.1741373111; _ga_1R0V29DGTE=GS1.1.1745952382.23.0.1745952382.60.0.0; _pk_ref.1.1fff=%5B%22%22%2C%22%22%2C1745952383%2C%22http%3A%2F%2Flocalhost%3A8888%2Fbug%2Fadmin%2Fusers%3Fquery%3DJunior_lemos83%40hotmail.com%26field%3Demail%22%5D; _gcl_au=1.1.1924135496.1741373111; _pk_id.1.1fff=a016ddacdca96eab.1744064434.; debug-bar-state=minimized; debug-bar-tab=ci-history; debug-hot-reload=show; debug-bar-theme=light; _ga_ZS3MDF14ZF=GS1.1.1741625584.3.1.1741625594.0.0.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Priority": "u=3, i",
+    "Accept-Language": "pt-BR,pt;q=0.9",
+    "Content-Length": "260",
+    "Sec-Fetch-Dest": "empty",
+    "Referer": "http:\/\/localhost:8888\/painelpro\/index.php",
+    "User-Agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Origin": "http:\/\/localhost:8888",
+    "Content-Type": "multipart\/form-data; boundary=----WebKitFormBoundaryhdhwUCf6Qcu2Im7q",
+    "Accept": "*\/*",
+    "Host": "localhost:8888"
+}
+[2025-05-14 14:12:33] [debug] Nova instância da classe User criada. Memória em uso: 2097152 bytes
+[2025-05-14 14:12:33] [debug] Iniciando verificação de credenciais no banco de dados
+[2025-05-14 14:12:33] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 14:12:33] [debug] Timestamp da verificação: 2025-05-14 14:12:33.000000
+[2025-05-14 14:12:33] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+    "query_time_ms": 0.67,
+    "last_login": "2025-05-14 14:06:50",
+    "account_created": "2025-03-26 18:25:30"
+}
+[2025-05-14 14:12:33] [info] Verificação de senha: válida (tempo: 210.2ms)
+[2025-05-14 14:12:33] [success] Login bem-sucedido para laurogomes1@gmail.com - Usuário: Administrador (ID: 1, Função: admin)
+[2025-05-14 14:12:33] [debug] Último login atualizado para usuário ID: 1
+[2025-05-14 14:12:33] [success] Credenciais verificadas com sucesso para: laurogomes1@gmail.com
+[2025-05-14 14:12:33] [debug] Dados do usuário autenticado: {
+    "id": 1,
+    "email": "laurogomes1@gmail.com",
+    "name": "Administrador",
+    "role": "admin",
+    "last_login": "2025-05-14 14:06:50"
+}
+[2025-05-14 14:15:43] [info] Iniciando verificação de credenciais - Origem: http://localhost:8888/painelpro/index.php
+[2025-05-14 14:15:43] [debug] Detalhes da requisição: {
+    "method": "POST",
+    "ip": "::1",
+    "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15"
+}
+[2025-05-14 14:15:43] [info] Iniciando processo de validação para email: laurogomes1@gmail.com
+[2025-05-14 14:15:43] [debug] Headers da requisição: {
+    "Connection": "keep-alive",
+    "Cookie": "PHPSESSID=8q787bvmne4r0siahtahv6q4ss; sb-login=SDVYa3ZsenlzK05DUENWeUorWnJxblJCTU91aXdRN2hSRHl2b0hYaHlUMG9BLzFaNk5GUGNOR3VKRHVKM01nbzh4R1M2RWQ4YjRPczB0cUFaMnJDV1BVNzkzSWpVMFJvWUpjRUdJNUJ3NzlmVDh1K3RjUlFKQWNoUng1dlVqNmNCZEhCQzd1VWd0TGRtYm9ETWovcUZOQmtzMmhnV1c0b3VGOGVSSVhLdnNRN0hLVVVpbkUrbkJMbkVOUW9ydit5b1hlWGNyZXRRZ2tEQ2ZGUW9jaHhGVUFTU2pDSWQ2SUZ0anNKbldtbkRnb0s5SWZpMW41Z01SYlh6dFNVSTU3dHU0RVlGOTJsMUtNZEN4RGNDQng1Mmt2TS9kWjJLMUgwZDdTMkFyOE82SWVoeTZ2Y1cweGtNOWZzcHMzWkNhd3FUbkJDVy9kNzQxamRTK1E5SllCV3FwM2NnWk5zN092M00xb0FKSG05SFBrcCtFbityeFZSeVJ1RVNrWmN2ekNLRG1qN1k2dkwzMTJpQUkzMEtDamhiUT09; _ga=GA1.1.993453907.1741373111; _ga_1R0V29DGTE=GS1.1.1745952382.23.0.1745952382.60.0.0; _pk_ref.1.1fff=%5B%22%22%2C%22%22%2C1745952383%2C%22http%3A%2F%2Flocalhost%3A8888%2Fbug%2Fadmin%2Fusers%3Fquery%3DJunior_lemos83%40hotmail.com%26field%3Demail%22%5D; _gcl_au=1.1.1924135496.1741373111; _pk_id.1.1fff=a016ddacdca96eab.1744064434.; debug-bar-state=minimized; debug-bar-tab=ci-history; debug-hot-reload=show; debug-bar-theme=light; _ga_ZS3MDF14ZF=GS1.1.1741625584.3.1.1741625594.0.0.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Priority": "u=3, i",
+    "Accept-Language": "pt-BR,pt;q=0.9",
+    "Content-Length": "260",
+    "Sec-Fetch-Dest": "empty",
+    "Referer": "http:\/\/localhost:8888\/painelpro\/index.php",
+    "User-Agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Origin": "http:\/\/localhost:8888",
+    "Content-Type": "multipart\/form-data; boundary=----WebKitFormBoundaryu0VsZ14Y15GWt2vX",
+    "Accept": "*\/*",
+    "Host": "localhost:8888"
+}
+[2025-05-14 14:15:43] [debug] Nova instância da classe User criada. Memória em uso: 2097152 bytes
+[2025-05-14 14:15:43] [debug] Iniciando verificação de credenciais no banco de dados
+[2025-05-14 14:15:43] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 14:15:43] [debug] Timestamp da verificação: 2025-05-14 14:15:43.000000
+[2025-05-14 14:15:43] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+    "query_time_ms": 1.16,
+    "last_login": "2025-05-14 14:12:33",
+    "account_created": "2025-03-26 18:25:30"
+}
+[2025-05-14 14:15:43] [info] Verificação de senha: válida (tempo: 180.99ms)
+[2025-05-14 14:15:43] [success] Login bem-sucedido para laurogomes1@gmail.com - Usuário: Administrador (ID: 1, Função: admin)
+[2025-05-14 14:15:43] [debug] Último login atualizado para usuário ID: 1
+[2025-05-14 14:15:43] [success] Credenciais verificadas com sucesso para: laurogomes1@gmail.com
+[2025-05-14 14:15:43] [debug] Dados do usuário autenticado: {
+    "id": 1,
+    "email": "laurogomes1@gmail.com",
+    "name": "Administrador",
+    "role": "admin",
+    "last_login": "2025-05-14 14:12:33"
+}
+[2025-05-14 14:17:56] [info] Iniciando verificação de credenciais - Origem: http://localhost:8888/painelpro/index.php
+[2025-05-14 14:17:56] [debug] Detalhes da requisição: {
+    "method": "POST",
+    "ip": "::1",
+    "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15"
+}
+[2025-05-14 14:17:56] [info] Iniciando processo de validação para email: laurogomes1@gmail.com
+[2025-05-14 14:17:56] [debug] Headers da requisição: {
+    "Connection": "keep-alive",
+    "Cookie": "PHPSESSID=8q787bvmne4r0siahtahv6q4ss; sb-login=SDVYa3ZsenlzK05DUENWeUorWnJxblJCTU91aXdRN2hSRHl2b0hYaHlUMG9BLzFaNk5GUGNOR3VKRHVKM01nbzh4R1M2RWQ4YjRPczB0cUFaMnJDV1BVNzkzSWpVMFJvWUpjRUdJNUJ3NzlmVDh1K3RjUlFKQWNoUng1dlVqNmNCZEhCQzd1VWd0TGRtYm9ETWovcUZOQmtzMmhnV1c0b3VGOGVSSVhLdnNRN0hLVVVpbkUrbkJMbkVOUW9ydit5b1hlWGNyZXRRZ2tEQ2ZGUW9jaHhGVUFTU2pDSWQ2SUZ0anNKbldtbkRnb0s5SWZpMW41Z01SYlh6dFNVSTU3dHU0RVlGOTJsMUtNZEN4RGNDQng1Mmt2TS9kWjJLMUgwZDdTMkFyOE82SWVoeTZ2Y1cweGtNOWZzcHMzWkNhd3FUbkJDVy9kNzQxamRTK1E5SllCV3FwM2NnWk5zN092M00xb0FKSG05SFBrcCtFbityeFZSeVJ1RVNrWmN2ekNLRG1qN1k2dkwzMTJpQUkzMEtDamhiUT09; _ga=GA1.1.993453907.1741373111; _ga_1R0V29DGTE=GS1.1.1745952382.23.0.1745952382.60.0.0; _pk_ref.1.1fff=%5B%22%22%2C%22%22%2C1745952383%2C%22http%3A%2F%2Flocalhost%3A8888%2Fbug%2Fadmin%2Fusers%3Fquery%3DJunior_lemos83%40hotmail.com%26field%3Demail%22%5D; _gcl_au=1.1.1924135496.1741373111; _pk_id.1.1fff=a016ddacdca96eab.1744064434.; debug-bar-state=minimized; debug-bar-tab=ci-history; debug-hot-reload=show; debug-bar-theme=light; _ga_ZS3MDF14ZF=GS1.1.1741625584.3.1.1741625594.0.0.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Priority": "u=3, i",
+    "Accept-Language": "pt-BR,pt;q=0.9",
+    "Content-Length": "260",
+    "Sec-Fetch-Dest": "empty",
+    "Referer": "http:\/\/localhost:8888\/painelpro\/index.php",
+    "User-Agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/18.4 Safari\/605.1.15",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Origin": "http:\/\/localhost:8888",
+    "Content-Type": "multipart\/form-data; boundary=----WebKitFormBoundaryHw3CMKCgBwxJx0rt",
+    "Accept": "*\/*",
+    "Host": "localhost:8888"
+}
+[2025-05-14 14:17:56] [debug] Nova instância da classe User criada. Memória em uso: 2097152 bytes
+[2025-05-14 14:17:56] [debug] Iniciando verificação de credenciais no banco de dados
+[2025-05-14 14:17:56] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 14:17:56] [debug] Timestamp da verificação: 2025-05-14 14:17:56.000000
+[2025-05-14 14:17:56] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+    "query_time_ms": 1.25,
+    "last_login": "2025-05-14 14:15:43",
+    "account_created": "2025-03-26 18:25:30"
+}
+[2025-05-14 14:17:56] [info] Verificação de senha: válida (tempo: 206.99ms)
+[2025-05-14 14:17:56] [success] Login bem-sucedido para laurogomes1@gmail.com - Usuário: Administrador (ID: 1, Função: admin)
+[2025-05-14 14:17:56] [debug] Último login atualizado para usuário ID: 1
+[2025-05-14 14:17:56] [success] Credenciais verificadas com sucesso para: laurogomes1@gmail.com
+[2025-05-14 14:17:56] [debug] Dados do usuário autenticado: {
+    "id": 1,
+    "email": "laurogomes1@gmail.com",
+    "name": "Administrador",
+    "role": "admin",
+    "last_login": "2025-05-14 14:15:43"
+}
+[2025-05-14 14:22:09] [info] Iniciando verificação de credenciais
+[2025-05-14 14:22:09] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-05-14 14:22:09] [debug] Nova instância da classe User criada
+[2025-05-14 14:22:09] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 14:22:09] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m"
+}
+[2025-05-14 14:22:09] [info] Verificação de senha: válida
+[2025-05-14 14:22:09] [success] Login bem-sucedido para o email: laurogomes1@gmail.com
+[2025-05-14 14:22:09] [debug] Resultado da verificação: {
+    "success": true,
+    "user": {
+        "id": 1,
+        "email": "laurogomes1@gmail.com",
+        "password": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+        "pin": "282740",
+        "name": "Administrador",
+        "role": "admin",
+        "created_at": "2025-03-26 18:25:30",
+        "updated_at": "2025-05-14 14:17:56"
+    }
+}
+[2025-05-14 14:22:13] [debug] Nova instância da classe User criada
+[2025-05-14 14:22:13] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-05-14 14:22:13] [debug] Verificação de senha na autenticação completa: válida
+[2025-05-14 14:22:13] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-05-14 14:22:13] [success] Autenticação completa bem-sucedida para: laurogomes1@gmail.com
+[2025-05-14 14:25:15] [info] Iniciando verificação de credenciais
+[2025-05-14 14:25:15] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-05-14 14:25:15] [debug] Nova instância da classe User criada
+[2025-05-14 14:25:15] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 14:25:15] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m"
+}
+[2025-05-14 14:25:15] [info] Verificação de senha: válida
+[2025-05-14 14:25:15] [success] Login bem-sucedido para o email: laurogomes1@gmail.com
+[2025-05-14 14:25:15] [debug] Resultado da verificação: {
+    "success": true,
+    "user": {
+        "id": 1,
+        "email": "laurogomes1@gmail.com",
+        "password": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+        "pin": "282740",
+        "name": "Administrador",
+        "role": "admin",
+        "created_at": "2025-03-26 18:25:30",
+        "updated_at": "2025-05-14 14:17:56"
+    }
+}
+[2025-05-14 14:25:19] [debug] Nova instância da classe User criada
+[2025-05-14 14:25:19] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-05-14 14:25:19] [debug] Verificação de senha na autenticação completa: válida
+[2025-05-14 14:25:19] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-05-14 14:25:19] [success] Autenticação completa bem-sucedida para: laurogomes1@gmail.com
+[2025-05-14 17:40:41] [info] Usuário Administrador (ID: 1) fez logout
+[2025-05-14 14:40:48] [info] Iniciando verificação de credenciais
+[2025-05-14 14:40:48] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-05-14 14:40:48] [debug] Nova instância da classe User criada
+[2025-05-14 14:40:48] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 14:40:48] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m"
+}
+[2025-05-14 14:40:48] [info] Verificação de senha: válida
+[2025-05-14 14:40:48] [success] Login bem-sucedido para o email: laurogomes1@gmail.com
+[2025-05-14 14:40:48] [debug] Resultado da verificação: {
+    "success": true,
+    "user": {
+        "id": 1,
+        "email": "laurogomes1@gmail.com",
+        "password": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+        "pin": "282740",
+        "name": "Administrador",
+        "role": "admin",
+        "created_at": "2025-03-26 18:25:30",
+        "updated_at": "2025-05-14 14:17:56"
+    }
+}
+[2025-05-14 14:40:52] [debug] Nova instância da classe User criada
+[2025-05-14 14:40:52] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-05-14 14:40:52] [debug] Verificação de senha na autenticação completa: válida
+[2025-05-14 14:40:52] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-05-14 14:40:52] [success] Autenticação completa bem-sucedida para: laurogomes1@gmail.com
+[2025-05-14 16:09:59] [info] Iniciando verificação de credenciais
+[2025-05-14 16:09:59] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-05-14 16:09:59] [debug] Nova instância da classe User criada
+[2025-05-14 16:09:59] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 16:09:59] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m"
+}
+[2025-05-14 16:09:59] [info] Verificação de senha: válida
+[2025-05-14 16:09:59] [success] Login bem-sucedido para o email: laurogomes1@gmail.com
+[2025-05-14 16:09:59] [debug] Resultado da verificação: {
+    "success": true,
+    "user": {
+        "id": 1,
+        "email": "laurogomes1@gmail.com",
+        "password": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+        "pin": "282740",
+        "name": "Administrador",
+        "role": "admin",
+        "created_at": "2025-03-26 18:25:30",
+        "updated_at": "2025-05-14 14:17:56"
+    }
+}
+[2025-05-14 16:10:02] [debug] Nova instância da classe User criada
+[2025-05-14 16:10:02] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-05-14 16:10:02] [debug] Verificação de senha na autenticação completa: válida
+[2025-05-14 16:10:02] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-05-14 16:10:02] [success] Autenticação completa bem-sucedida para: laurogomes1@gmail.com
+[2025-05-14 16:25:47] [info] Iniciando verificação de credenciais
+[2025-05-14 16:25:47] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-05-14 19:40:48] [info] Usuário Administrador (ID: 1) fez logout
+[2025-05-14 16:40:55] [info] Iniciando verificação de credenciais
+[2025-05-14 16:40:55] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-05-14 16:40:55] [debug] Nova instância da classe User criada
+[2025-05-14 16:40:55] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 16:40:55] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m"
+}
+[2025-05-14 16:40:55] [info] Verificação de senha: válida
+[2025-05-14 16:40:55] [success] Login bem-sucedido para o email: laurogomes1@gmail.com
+[2025-05-14 16:40:55] [debug] Resultado da verificação: {
+    "success": true,
+    "user": {
+        "id": 1,
+        "email": "laurogomes1@gmail.com",
+        "password": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+        "pin": "282740",
+        "name": "Administrador",
+        "role": "admin",
+        "created_at": "2025-03-26 18:25:30",
+        "updated_at": "2025-05-14 14:17:56"
+    }
+}
+[2025-05-14 16:41:00] [debug] Nova instância da classe User criada
+[2025-05-14 16:41:00] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-05-14 16:41:00] [debug] Verificação de senha na autenticação completa: válida
+[2025-05-14 16:41:00] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-05-14 16:41:00] [success] Autenticação completa bem-sucedida para: laurogomes1@gmail.com
+[2025-05-14 18:30:23] [info] Iniciando verificação de credenciais
+[2025-05-14 18:30:23] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-05-14 18:30:23] [debug] Nova instância da classe User criada
+[2025-05-14 18:30:23] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-05-14 18:30:23] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m"
+}
+[2025-05-14 18:30:23] [info] Verificação de senha: válida
+[2025-05-14 18:30:23] [success] Login bem-sucedido para o email: laurogomes1@gmail.com
+[2025-05-14 18:30:23] [debug] Resultado da verificação: {
+    "success": true,
+    "user": {
+        "id": 1,
+        "email": "laurogomes1@gmail.com",
+        "password": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+        "pin": "282740",
+        "name": "Administrador",
+        "role": "admin",
+        "created_at": "2025-03-26 18:25:30",
+        "updated_at": "2025-05-14 14:17:56"
+    }
+}
+[2025-05-14 18:30:27] [debug] Nova instância da classe User criada
+[2025-05-14 18:30:27] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-05-14 18:30:27] [debug] Verificação de senha na autenticação completa: válida
+[2025-05-14 18:30:27] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-05-14 18:30:27] [success] Autenticação completa bem-sucedida para: laurogomes1@gmail.com

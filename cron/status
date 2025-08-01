@@ -1,0 +1,83 @@
+<?php
+// Path: /cron/status
+// This file updates provider order statuses in the database
+
+// Set error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Include necessary files
+require_once __DIR__ . '/../app/config.php';
+require_once __DIR__ . '/../app/data.php'; // Include database configuration
+require_once __DIR__ . '/../app/modules/pedidos/provider_status.php';
+
+// Log start of the cron job
+error_log("Cron job for updating provider order statuses started at " . date('Y-m-d H:i:s'));
+
+// Connect to database - using direct connection for MAMP compatibility
+try {
+    // MAMP typically uses a socket connection at /Applications/MAMP/tmp/mysql/mysql.sock
+    $pdo = new PDO(
+        "mysql:unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock;dbname=" . DB_NAME . ";charset=utf8",
+        DB_USER,
+        DB_PASS,
+        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+    );
+    error_log("Successfully connected to database");
+} catch(PDOException $e) {
+    die("Erro na conexão com o banco de dados: " . $e->getMessage());
+}
+
+// Get orders with provider IDs (excluding null, -1, '', '0', '1', and already completed orders)
+$query = "SELECT c.id, c.provider, c.provider_status_full 
+         FROM cart c 
+         WHERE c.provider IS NOT NULL 
+         AND c.provider != '-1' 
+         AND c.provider != '' 
+         AND c.provider != '0' 
+         AND c.provider != '1' 
+         AND (c.provider_status_full IS NULL 
+              OR (c.provider_status_full NOT LIKE '%completed%' 
+                  AND c.provider_status_full NOT LIKE '%Completed%'))";         
+$stmt = $pdo->query($query);
+
+error_log("Query for non-completed orders executed");
+
+$updatedCount = 0;
+$errorCount = 0;
+
+if ($stmt) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $orderId = $row['id'];
+        $providerOrderId = $row['provider'];
+        
+        // Get status from provider
+        $statusResponse = statusProvedor($providerOrderId);
+        
+        if ($statusResponse !== null) {
+            // Convert status to JSON if it's an array
+            $statusJson = is_array($statusResponse) ? json_encode($statusResponse) : $statusResponse;
+            
+            // Save full status in the database
+            $updateStmt = $pdo->prepare("UPDATE cart SET provider_status_full = ? WHERE id = ?");
+            
+            if ($updateStmt->execute([$statusJson, $orderId])) {
+                $updatedCount++;
+                error_log("Updated status for order ID $orderId with provider ID $providerOrderId: " . json_encode($statusResponse));
+            } else {
+                $errorCount++;
+                error_log("Failed to update status for order ID $orderId: " . $stmt->error);
+            }
+            
+            // No need to close PDO statements
+        } else {
+            $errorCount++;
+            error_log("Failed to get status from provider for order ID $orderId with provider ID $providerOrderId");
+        }
+    }
+}
+
+// Log completion
+error_log("Cron job completed. Updated: $updatedCount orders. Errors: $errorCount");
+// PDO connections are automatically closed when the script ends
+?>

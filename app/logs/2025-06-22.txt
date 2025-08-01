@@ -1,0 +1,58 @@
+[2025-06-22 19:10:39] [info] Iniciando verificação de credenciais
+[2025-06-22 19:10:39] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-06-22 19:10:39] [debug] Nova instância da classe User criada
+[2025-06-22 19:10:39] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-06-22 19:10:39] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m"
+}
+[2025-06-22 19:10:39] [info] Verificação de senha: válida
+[2025-06-22 19:10:39] [success] Login bem-sucedido para o email: laurogomes1@gmail.com
+[2025-06-22 19:10:39] [debug] Resultado da verificação: {
+    "success": true,
+    "user": {
+        "id": 1,
+        "email": "laurogomes1@gmail.com",
+        "password": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+        "pin": "282740",
+        "name": "Administrador",
+        "role": "admin",
+        "created_at": "2025-03-26 21:25:30",
+        "updated_at": "2025-05-14 17:17:56"
+    }
+}
+[2025-06-22 19:10:44] [debug] Nova instância da classe User criada
+[2025-06-22 19:10:44] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-06-22 19:10:44] [debug] Verificação de senha na autenticação completa: válida
+[2025-06-22 19:10:44] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-06-22 19:10:44] [success] Autenticação completa bem-sucedida para: laurogomes1@gmail.com
+[2025-06-22 19:48:47] [info] Iniciando verificação de credenciais
+[2025-06-22 19:48:47] [debug] Dados recebidos - Email: laurogomes1@gmail.com
+[2025-06-22 19:48:47] [debug] Nova instância da classe User criada
+[2025-06-22 19:48:47] [info] Tentativa de verificação de credenciais para email: laurogomes1@gmail.com
+[2025-06-22 19:48:47] [debug] Resultado da busca do usuário: {
+    "email_found": true,
+    "password_received": "L@uro@10",
+    "stored_hash": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m"
+}
+[2025-06-22 19:48:47] [info] Verificação de senha: válida
+[2025-06-22 19:48:47] [success] Login bem-sucedido para o email: laurogomes1@gmail.com
+[2025-06-22 19:48:47] [debug] Resultado da verificação: {
+    "success": true,
+    "user": {
+        "id": 1,
+        "email": "laurogomes1@gmail.com",
+        "password": "$2y$10$hiNCIOwtpUrDAguW\/5sZ1.F6Q1hwuk9tU.4lFXQMa1S5.oHPLMi2m",
+        "pin": "282740",
+        "name": "Administrador",
+        "role": "admin",
+        "created_at": "2025-03-26 21:25:30",
+        "updated_at": "2025-05-14 17:17:56"
+    }
+}
+[2025-06-22 19:48:51] [debug] Nova instância da classe User criada
+[2025-06-22 19:48:51] [info] Tentativa de autenticação completa para email: laurogomes1@gmail.com
+[2025-06-22 19:48:51] [debug] Verificação de senha na autenticação completa: válida
+[2025-06-22 19:48:51] [debug] Verificando PIN para o usuário: laurogomes1@gmail.com
+[2025-06-22 19:48:51] [success] Autenticação completa bem-sucedida para: laurogomes1@gmail.com
