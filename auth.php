@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'role' => $result['user']['role']
         ];
         
-        header('Location: app/modules/dashboard/');
+        header('Location: /bookmarks/dashboard');
         exit;
     } else {
         // Se temos credenciais válidas mas PIN inválido

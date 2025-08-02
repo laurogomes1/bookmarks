@@ -1,169 +1,105 @@
 <?php
-session_start();
-require_once '../../layout/common.php';
-require_once '../../data.php';
+// A sessão já é iniciada pelo roteador principal (index.php)
 
-// Verifica se o usuário está logado
+// 1. Caminhos de inclusão corrigidos para usar a constante BASE_PATH
+require_once BASE_PATH . 'app/layout/common.php';
+require_once BASE_PATH . 'app/data.php';
+
+// Verifica se o usuário está autenticado
 checkAuth();
 
 $user = $_SESSION['user'];
 
-// Verifica se é administrador
+// Verifica se o usuário tem permissão de administrador
 if ($user['role'] !== 'admin') {
-    header('Location: ../dashboard/');
+    // 2. Redirecionamento corrigido para a rota amigável
+    header('Location: /bookmarks/dashboard');
     exit;
 }
 
 $pdo = db_connect();
-$success = false;
-$error = '';
+$success_message = '';
+$error_message = '';
 
-// Lógica de upload de logo
+// Lógica para lidar com o upload da nova logo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['new_logo'])) {
-    $target_dir = "../../../images/";
-    // Garante que o diretório de imagens exista
-    if (!is_dir($target_dir)) {
-        mkdir($target_dir, 0755, true);
-    }
+    if ($_FILES['new_logo']['error'] === UPLOAD_ERR_OK) {
+        $file_tmp_path = $_FILES['new_logo']['tmp_name'];
+        $file_name = 'logo.png'; // Sempre salva como logo.png para facilitar a referência
+        
+        // 3. Caminho de destino corrigido usando BASE_PATH
+        $dest_path = BASE_PATH . 'images/' . $file_name;
 
-    $imageFileType = strtolower(pathinfo($_FILES["new_logo"]["name"], PATHINFO_EXTENSION));
-    $new_logo_name = 'logo_' . time() . '.' . $imageFileType;
-    $target_file = $target_dir . $new_logo_name;
-    $uploadOk = 1;
-
-    // Verifica se o arquivo é uma imagem
-    $check = getimagesize($_FILES["new_logo"]["tmp_name"]);
-    if($check === false) {
-        $error = "O arquivo não é uma imagem válida.";
-        $uploadOk = 0;
-    }
-
-    // Verifica o tamanho do arquivo (limite de 2MB)
-    if ($_FILES["new_logo"]["size"] > 2000000) {
-        $error = "Desculpe, seu arquivo é muito grande.";
-        $uploadOk = 0;
-    }
-
-    // Permite apenas formatos de imagem específicos
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-        $error = "Desculpe, apenas arquivos JPG, JPEG, PNG & GIF são permitidos.";
-        $uploadOk = 0;
-    }
-
-    if ($uploadOk == 0) {
-        // o erro já foi definido
-    } else {
-        if (move_uploaded_file($_FILES["new_logo"]["tmp_name"], $target_file)) {
-            // Salva o novo caminho do logo no banco de dados
-            $stmt = $pdo->prepare("INSERT INTO system_config (config_key, config_value) VALUES ('logo_path', ?) ON DUPLICATE KEY UPDATE config_value = ?");
-            if ($stmt->execute([$new_logo_name, $new_logo_name])) {
-                $success = true;
-            } else {
-                $error = "Houve um erro ao salvar a configuração no banco de dados.";
-            }
-        } else {
-            $error = "Desculpe, houve um erro ao enviar seu arquivo.";
+        // Garante que o diretório de imagens exista
+        if (!is_dir(BASE_PATH . 'images/')) {
+            mkdir(BASE_PATH . 'images/', 0755, true);
         }
+
+        // Move o arquivo enviado para o destino
+        if(move_uploaded_file($file_tmp_path, $dest_path)) {
+            $success_message = 'Logo atualizada com sucesso!';
+        } else {
+            $error_message = 'Ocorreu um erro ao salvar a nova logo.';
+        }
+    } else {
+        $error_message = 'Erro no upload do arquivo. Por favor, tente novamente.';
     }
 }
 
+// Inicia a construção do conteúdo da página
+$pageContent = '<div class="bg-white shadow rounded-lg p-4 sm:p-6">';
+$pageContent .= '<h1 class="text-2xl font-semibold text-gray-900 mb-6">Configurações</h1>';
 
-$pageContent = '<div class="bg-white shadow rounded-lg p-6">
-    <h1 class="text-2xl font-semibold text-gray-900 mb-6">Configurações do Sistema</h1>';
-    
-if ($success) {
-    $pageContent .= '<div class="mb-4 p-3 bg-green-100 text-green-800 rounded">Logo atualizado com sucesso!</div>';
+// Exibe mensagens de sucesso ou erro
+if ($success_message) {
+    $pageContent .= '<div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" role="alert"><p>' . $success_message . '</p></div>';
 }
-if ($error) {
-    $pageContent .= '<div class="mb-4 p-3 bg-red-100 text-red-800 rounded">' . htmlspecialchars($error) . '</div>';
+if ($error_message) {
+    $pageContent .= '<div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert"><p>' . $error_message . '</p></div>';
 }
 
-$pageContent .= '
-    <div class="bg-white shadow rounded-lg p-6 border border-gray-200">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Atualizar Logo do Sistema</h2>
-        <form action="" method="post" enctype="multipart/form-data" class="space-y-4">
-            <div>
-                <label for="new_logo" class="block text-sm font-medium text-gray-700">Selecione a nova imagem do logo:</label>
-                <input type="file" name="new_logo" id="new_logo" class="mt-1 block w-full text-sm text-gray-500
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-md file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-green-50 file:text-green-700
-                    hover:file:bg-green-100
-                "/>
-                <p class="mt-2 text-xs text-gray-500">PNG, JPG, GIF até 2MB.</p>
-            </div>
-            <div>
-                <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded shadow hover:bg-green-800 transition">Enviar Novo Logo</button>
-            </div>
-        </form>
-    </div>
-';
+$pageContent .= '<div class="space-y-6">';
 
+// Seção para upload da logo
+$pageContent .= '<div>';
+$pageContent .= '<h2 class="text-lg font-medium text-gray-900">Alterar Logo</h2>';
+$pageContent .= '<p class="text-sm text-gray-500 mt-1">Faça o upload de um novo arquivo de imagem para a logo do sistema. Recomendado: formato PNG com fundo transparente.</p>';
 
-$pageContent .= '<div class="mt-6 space-y-6">
-    <div class="bg-blue-50 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-blue-900 mb-2">Informações do Sistema</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div>
-                <span class="font-medium text-blue-800">Versão do PHP:</span>
-                <span class="text-blue-600">' . phpversion() . '</span>
-            </div>
-            <div>
-                <span class="font-medium text-blue-800">Servidor:</span>
-                <span class="text-blue-600">' . $_SERVER['SERVER_SOFTWARE'] . '</span>
-            </div>
-            <div>
-                <span class="font-medium text-blue-800">Data/Hora:</span>
-                <span class="text-blue-600">' . date('d/m/Y H:i:s') . '</span>
-            </div>
-            <div>
-                <span class="font-medium text-blue-800">Usuário Logado:</span>
-                <span class="text-blue-600">' . htmlspecialchars($user['name']) . '</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="bg-yellow-50 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-yellow-900 mb-2">Módulos Disponíveis</h2>
-        <ul class="space-y-2 text-sm">
-            <li class="flex items-center">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span class="text-yellow-800">Dashboard</span>
-            </li>
-            <li class="flex items-center">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span class="text-yellow-800">Usuários</span>
-            </li>
-            <li class="flex items-center">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span class="text-yellow-800">Configurações</span>
-            </li>
-        </ul>
-    </div>
-    
-    <div class="bg-green-50 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-green-900 mb-2">Status do Sistema</h2>
-        <div class="space-y-2 text-sm">
-            <div class="flex items-center">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span class="text-green-800">Sistema operacional</span>
-            </div>
-            <div class="flex items-center">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span class="text-green-800">Autenticação funcionando</span>
-            </div>
-            <div class="flex items-center">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span class="text-green-800">Banco de dados conectado</span>
-            </div>
-        </div>
-    </div>
-</div>';
-
+// 4. Action do formulário corrigido para a rota amigável
+$pageContent .= '<form action="/bookmarks/configuracoes" method="post" enctype="multipart/form-data" class="mt-4">';
+$pageContent .= '<div class="flex items-center space-x-4">';
+$pageContent .= '<div>';
+$pageContent .= '<label for="new_logo" class="block text-sm font-medium text-gray-700">Arquivo da Logo</label>';
+$pageContent .= '<input type="file" name="new_logo" id="new_logo" required class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>';
+$pageContent .= '</div>';
+$pageContent .= '<div class="pt-5">';
+$pageContent .= '<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-blue-700 transition">Salvar Logo</button>';
+$pageContent .= '</div>';
+$pageContent .= '</div>';
+$pageContent .= '</form>';
 $pageContent .= '</div>';
 
+// Seção para visualizar a logo atual
+$pageContent .= '<div class="border-t border-gray-200 pt-6">';
+$pageContent .= '<h2 class="text-lg font-medium text-gray-900">Logo Atual</h2>';
+$logo_path = BASE_PATH . 'images/logo.png';
+$logo_url = '/bookmarks/images/logo.png'; // 5. URL absoluta para a imagem
+
+if (file_exists($logo_path)) {
+    // Adiciona um timestamp para evitar cache do navegador
+    $pageContent .= '<img src="' . $logo_url . '?t=' . time() . '" alt="Logo Atual" class="mt-4 h-12 w-auto bg-gray-100 p-2 rounded">';
+} else {
+    $pageContent .= '<p class="mt-4 text-sm text-gray-500">Nenhuma logo definida. Faça o upload de uma.</p>';
+}
+$pageContent .= '</div>';
+
+
+$pageContent .= '</div>'; // Fim do 'space-y-6'
+$pageContent .= '</div>'; // Fim do 'bg-white'
+
+// Renderiza a página completa
 echo renderHeader('Configurações');
 echo renderPageStructure($user, $pageContent);
 echo renderFooter();
+
 ?>
