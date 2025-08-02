@@ -1,57 +1,50 @@
 <?php
-session_start();
-require_once '../../layout/common.php';
-require_once '../../data.php';
+// Caminhos de inclusão corrigidos
+require_once BASE_PATH . 'app/layout/common.php';
+require_once BASE_PATH . 'app/data.php';
 
-// Verifica se o usuário está logado
 checkAuth();
-
 $user = $_SESSION['user'];
-$pdo = db_connect();
 
-$success = false;
-$error = '';
-
+// Lógica para ADICIONAR um novo usuário
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim($_POST['name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $pin = $_POST['pin'] ?? '';
-    $role = $_POST['role'] ?? 'user';
-    if ($name && $email && $password && $pin && in_array($role, ['admin','user'])) {
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        $pinHash = password_hash($pin, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare('INSERT INTO users (email, password, pin, name, role) VALUES (?, ?, ?, ?, ?)');
-        try {
-            $stmt->execute([$email, $hash, $pinHash, $name, $role]);
-            $success = true;
-        } catch (PDOException $e) {
-            $error = 'Erro ao cadastrar usuário: ' . $e->getMessage();
-        }
-    } else {
-        $error = 'Preencha todos os campos corretamente.';
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $role = $_POST['role'];
+
+    if (!empty($name) && !empty($email) && !empty($password) && !empty($role)) {
+        $pdo = db_connect();
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        
+        $stmt = $pdo->prepare('INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)');
+        $stmt->execute([$name, $email, $hashed_password, $role]);
+        
+        // Redireciona para a lista de usuários com a ROTA CORRETA
+        header('Location: /bookmarks/usuarios');
+        exit;
     }
 }
 
-$pageContent = '<div class="bg-white shadow rounded-lg p-4 sm:p-6 max-w-lg mx-auto">';
-$pageContent .= '<h1 class="text-2xl font-semibold text-gray-900 mb-6">Adicionar Usuário</h1>';
-if ($success) {
-    $pageContent .= '<div class="mb-4 p-3 bg-green-100 text-green-800 rounded">Usuário cadastrado com sucesso! <a href="index.php" class="underline text-green-700">Voltar à lista</a></div>';
-} else {
-    if ($error) {
-        $pageContent .= '<div class="mb-4 p-3 bg-red-100 text-red-800 rounded">' . htmlspecialchars($error) . '</div>';
-    }
-    $pageContent .= '<form method="post" class="space-y-4">';
-    $pageContent .= '<div><label class="block text-gray-700">Nome</label><input name="name" class="w-full border px-3 py-2 rounded" required></div>';
-    $pageContent .= '<div><label class="block text-gray-700">Email</label><input type="email" name="email" class="w-full border px-3 py-2 rounded" required></div>';
-    $pageContent .= '<div><label class="block text-gray-700">Senha</label><input type="password" name="password" class="w-full border px-3 py-2 rounded" required></div>';
-    $pageContent .= '<div><label class="block text-gray-700">PIN</label><input name="pin" maxlength="6" class="w-full border px-3 py-2 rounded" required></div>';
-    $pageContent .= '<div><label class="block text-gray-700">Perfil</label><select name="role" class="w-full border px-3 py-2 rounded"><option value="user">Usuário</option><option value="admin">Administrador</option></select></div>';
-    $pageContent .= '<div class="flex gap-2"><button type="submit" class="bg-green-700 text-white px-4 py-2 rounded">Salvar</button><a href="index.php" class="px-4 py-2 rounded bg-gray-200 text-gray-700">Cancelar</a></div>';
-    $pageContent .= '</form>';
-}
-$pageContent .= '</div>';
+// Conteúdo HTML do formulário
+$pageContent = '<div class="bg-white shadow rounded-lg p-4 sm:p-6">';
+$pageContent .= '<h1 class="text-2xl font-semibold text-gray-900 mb-6">Adicionar Novo Usuário</h1>';
+
+// Formulário com a ACTION CORRETA
+$pageContent .= '<form action="/bookmarks/usuarios/add" method="post" class="space-y-6">';
+$pageContent .= '<div><label for="name" class="block text-sm font-medium text-gray-700">Nome:</label><input type="text" id="name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></div>';
+$pageContent .= '<div><label for="email" class="block text-sm font-medium text-gray-700">Email:</label><input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></div>';
+$pageContent .= '<div><label for="password" class="block text-sm font-medium text-gray-700">Senha:</label><input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></div>';
+$pageContent .= '<div><label for="role" class="block text-sm font-medium text-gray-700">Perfil:</label><select id="role" name="role" required class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"><option value="user">Usuário</option><option value="admin">Administrador</option></select></div>';
+$pageContent .= '<div class="flex items-center space-x-4">';
+$pageContent .= '<button type="submit" class="bg-green-700 text-white px-4 py-2 rounded shadow hover:bg-green-800 transition">Salvar Usuário</button>';
+
+// Botão "Cancelar" com a ROTA CORRETA
+$pageContent .= '<a href="/bookmarks/usuarios" class="text-gray-600 hover:text-gray-900">Cancelar</a>';
+$pageContent .= '</div></form></div>';
 
 echo renderHeader('Adicionar Usuário');
 echo renderPageStructure($user, $pageContent);
 echo renderFooter();
+
+?>

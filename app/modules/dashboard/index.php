@@ -1,18 +1,22 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../layout/common.php';
-require_once __DIR__ . '/../../data.php';
+// MANTIDO: session_start() é agora gerenciado pelo roteador principal.
+// require_once __DIR__ . '/../../layout/common.php';
+// require_once __DIR__ . '/../../data.php';
+// ALTERADO: Usando as constantes definidas no roteador.
+require_once BASE_PATH . 'app/layout/common.php';
+require_once BASE_PATH . 'app/data.php';
+
 
 checkAuth();
 $user = $_SESSION['user'];
 $pdo = db_connect();
 
-// Carrega categorias ordenadas pela coluna 'display_order'
+// MANTIDO: Sua lógica original para carregar categorias.
 $stmt_categories = $pdo->prepare("SELECT * FROM categories WHERE user_id = ? ORDER BY display_order ASC");
 $stmt_categories->execute([$user['id']]);
 $categories = $stmt_categories->fetchAll(PDO::FETCH_ASSOC);
 
-// Carrega bookmarks ordenados pela ordem da categoria e pela sua própria ordem
+// MANTIDO: Sua lógica original para carregar bookmarks.
 $stmt_bookmarks = $pdo->prepare("
     SELECT b.*, c.name as category_name 
     FROM bookmarks b
@@ -26,6 +30,7 @@ while ($bookmark = $stmt_bookmarks->fetch(PDO::FETCH_ASSOC)) {
     $bookmarks_by_category[$bookmark['category_name']][] = $bookmark;
 }
 
+// MANTIDO: Sua estrutura HTML original.
 $dashboardContent = '
 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
     <h1 class="text-3xl font-bold text-gray-800">Seus Bookmarks</h1>
@@ -36,21 +41,22 @@ $dashboardContent = '
         </div>
         
         <div class="flex flex-wrap items-center gap-2">
-            <a href="../categories/add.php" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition flex-grow sm:flex-grow-0">+ Nova Categoria</a>
-            <a href="../bookmarks/add.php" class="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition flex-grow sm:flex-grow-0">+ Adicionar Bookmark</a>
+            <a href="/bookmarks/categories/add" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition flex-grow sm:flex-grow-0">+ Nova Categoria</a>
+            <a href="/bookmarks/bookmarks/add" class="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition flex-grow sm:flex-grow-0">+ Adicionar Bookmark</a>
         </div>
     </div>
 </div>
 <div id="category-list">';
 
 if (empty($categories)) {
+    // MANTIDO: Sua mensagem para quando não há categorias.
     $dashboardContent .= '<div class="text-center bg-white p-10 rounded-lg shadow">
         <p class="text-gray-600">Você ainda não tem categorias.</p>
         <p class="text-gray-500 text-sm mt-2">Comece adicionando uma para organizar seus links.</p>
     </div>';
 } else {
+    // MANTIDO: Sua lógica para iterar e exibir as categorias.
     foreach ($categories as $category) {
-        // Container de cada categoria com data-id para identificação
         $dashboardContent .= '<div class="category-container mb-8 p-4 bg-gray-50 rounded-lg" data-id="' . $category['id'] . '">';
         
         $dashboardContent .= '
@@ -61,17 +67,16 @@ if (empty($categories)) {
                 ' . htmlspecialchars($category['name']) . '
             </h2>
             <div class="flex items-center gap-3">
-                <a href="../categories/edit.php?id=' . $category['id'] . '" class="text-blue-500 hover:text-blue-700" title="Editar Categoria"><i class="fas fa-pencil-alt"></i></a>
-                <a href="../categories/delete.php?id=' . $category['id'] . '" class="text-red-500 hover:text-red-700" title="Excluir Categoria"><i class="fas fa-trash-alt"></i></a>
+                <a href="/bookmarks/categories/edit?id=' . $category['id'] . '" class="text-blue-500 hover:text-blue-700" title="Editar Categoria"><i class="fas fa-pencil-alt"></i></a>
+                <a href="/bookmarks/categories/delete?id=' . $category['id'] . '" class="text-red-500 hover:text-red-700" title="Excluir Categoria" onclick="return confirm(\'Atenção! Excluir uma categoria também removerá todos os bookmarks dentro dela. Deseja continuar?\');"><i class="fas fa-trash-alt"></i></a>
             </div>
         </div>';
         
-        // Container para os bookmarks arrastáveis
         $dashboardContent .= '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bookmark-grid" id="bookmark-list-' . $category['id'] . '" data-category-id="' . $category['id'] . '">';
 
         if (!empty($bookmarks_by_category[$category['name']])) {
+            // MANTIDO: Sua lógica para iterar e exibir os bookmarks.
             foreach ($bookmarks_by_category[$category['name']] as $bookmark) {
-                // Card de cada bookmark com data-id para identificação
                 $dashboardContent .= '
                 <div class="bookmark-card bg-white rounded-lg shadow p-5 border-l-4 border-green-500 hover:shadow-lg transition-shadow flex flex-col cursor-move" data-id="' . $bookmark['id'] . '" title="Arraste para reordenar ou mover para outra categoria">
                     <div class="flex-grow">
@@ -80,8 +85,8 @@ if (empty($categories)) {
                         <p class="text-gray-600 mt-2 text-sm">' . htmlspecialchars($bookmark['description']) . '</p>
                     </div>
                     <div class="mt-4 pt-4 border-t flex justify-end items-center gap-4">
-                        <a href="../bookmarks/edit.php?id=' . $bookmark['id'] . '" class="text-blue-500 hover:text-blue-700" title="Editar Bookmark"><i class="fas fa-pencil-alt"></i></a>
-                        <a href="../bookmarks/delete.php?id=' . $bookmark['id'] . '" class="text-red-500 hover:text-red-700" title="Excluir Bookmark"><i class="fas fa-trash-alt"></i></a>
+                        <a href="/bookmarks/bookmarks/edit?id=' . $bookmark['id'] . '" class="text-blue-500 hover:text-blue-700" title="Editar Bookmark"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="/bookmarks/bookmarks/delete?id=' . $bookmark['id'] . '" class="text-red-500 hover:text-red-700" title="Excluir Bookmark" onclick="return confirm(\'Tem certeza que deseja excluir este bookmark?\');"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </div>';
             }
@@ -92,7 +97,7 @@ if (empty($categories)) {
 }
 $dashboardContent .= '</div>'; // Fim de category-list
 
-// Bloco de JavaScript para controlar a funcionalidade
+// MANTIDO: Seu bloco de JavaScript original.
 $dashboardContent .= "
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -104,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
         orderActions.classList.remove('hidden');
     }
 
-    // Ativa o arraste para a lista de categorias
     const categoryList = document.getElementById('category-list');
     new Sortable(categoryList, {
         animation: 150,
@@ -112,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
         onEnd: showActionButtons
     });
 
-    // Ativa o arraste para cada lista de bookmarks
     document.querySelectorAll('.bookmark-grid').forEach(grid => {
         new Sortable(grid, {
             group: 'bookmarks',
@@ -122,23 +125,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Ação do botão Desfazer: simplesmente recarrega a página
     undoButton.addEventListener('click', () => location.reload());
 
-    // Ação do botão Salvar Ordem
     saveButton.addEventListener('click', function() {
         saveButton.disabled = true;
         saveButton.textContent = 'Salvando...';
 
-        // CORREÇÃO: Usa FormData para enviar os dados, o que funciona melhor com arrays para PHP.
         const formData = new FormData();
 
-        // Adiciona a nova ordem das categorias
         document.querySelectorAll('#category-list .category-container').forEach(el => {
-            formData.append('categories[]', el.dataset.id); // A chave 'categories[]' é crucial
+            formData.append('categories[]', el.dataset.id);
         });
 
-        // Adiciona a nova ordem dos bookmarks como uma string JSON
         const bookmarkOrder = {};
         document.querySelectorAll('.bookmark-grid').forEach(grid => {
             const categoryId = grid.dataset.categoryId;
@@ -147,14 +145,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         formData.append('bookmarks', JSON.stringify(bookmarkOrder));
 
-        // CORREÇÃO: O caminho correto para o arquivo ajax.
-        fetch('../../ajax/save_order.php', {
+        // ALTERADO: Apenas a URL do fetch para a nova rota.
+        fetch('/bookmarks/ajax/save-order', {
             method: 'POST',
-            body: formData // Envia o objeto FormData diretamente
+            body: formData
         })
         .then(response => {
             if (!response.ok) {
-                // Se houver um erro no servidor (como erro 500), o texto da resposta pode conter o erro do PHP
                 return response.text().then(text => { throw new Error('Erro do servidor: ' + text) });
             }
             return response.json();
@@ -162,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.status === 'success') {
                 orderActions.classList.add('hidden');
-                alert('Ordem salva com sucesso!');
+                // alert('Ordem salva com sucesso!'); // Descomente para testar
             } else {
                 alert('Erro ao salvar a ordem: ' + (data.message || 'Erro desconhecido.'));
                 location.reload();
